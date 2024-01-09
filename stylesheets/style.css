@@ -1,0 +1,14 @@
+.calculator {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.number, .operand {
+    border: 1px solid red;
+}
