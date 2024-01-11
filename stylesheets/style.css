@@ -5,17 +5,30 @@
 }
 
 .calculator {
-    margin-top: 100px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
     width: 500px;
 }
 
 .buttons {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
-.number, .operand, .display {
+.number, .operand, .display, .reset {
     border: 1px solid red;
+}
+
+.display {
+    display: flex;
+    height: 120px;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.buttons > .number, .operand, .reset {
+    width: 108px;
+    height: 110px;
 }

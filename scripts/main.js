@@ -53,6 +53,9 @@ buttons.addEventListener('click', function(e) {
         }
 
     }
+    else if(target.className == "reset"){
+        resetProgram();
+    }
 
 })
 
@@ -74,6 +77,7 @@ function performEquation(operand){
     }
     secondNum = "EMPTY";
     firstNum = result;
+    display.textContent = result;
 
     console.log(result);
 
@@ -81,6 +85,12 @@ function performEquation(operand){
 
 function resetDisplay(){
     displayBuffer = [];
+    display.textContent = "";
+}
 
-
+function resetProgram(){
+    firstNum = "EMPTY";
+    secondNum = "EMPTY";
+    currentOp = '';
+    resetDisplay();
 }
