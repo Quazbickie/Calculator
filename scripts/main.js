@@ -1,7 +1,9 @@
 let buttons = document.querySelector('.buttons');
 let display = document.querySelector('.display');
-let displayBuffer = [];
+let topDisplay = document.querySelector('.top-display');
+let bottomDisplay = document.querySelector('.bottom-display');
 
+let displayBuffer = [];
 let firstNum = "EMPTY";
 let secondNum = "EMPTY";
 let currentOp = '';
@@ -10,14 +12,12 @@ let currentOp = '';
 
 buttons.addEventListener('click', function(e) {
     let target = e.target;
-    console.log(target.className);
     let int = Number(displayBuffer.join(''));
-
 
     if(target.className == "number"){
         displayBuffer.push(target.textContent);
         console.log(displayBuffer);
-        display.textContent += target.textContent;
+        bottomDisplay.textContent = displayBuffer.join('');
     }
 
     else if(target.className == "operand"){
@@ -26,12 +26,8 @@ buttons.addEventListener('click', function(e) {
             secondNum = int;
             performEquation(currentOp);
         }    
-        else {
-            //add number in buffer to equation buffer
-            //or else perform first equation and put number 
-            //back into equation buffer
-            //1. Put buffer into equation
 
+        else {
             if(firstNum != "EMPTY" && secondNum != "EMPTY"){
                 performEquation(currentOp);
                 currentOp = target.textContent;
@@ -39,6 +35,7 @@ buttons.addEventListener('click', function(e) {
             else if(firstNum != "EMPTY" && secondNum == "EMPTY"){
                 currentOp = target.textContent;
                 secondNum = int;
+
             }
             else if(firstNum == "EMPTY"){
                 firstNum = int;
@@ -46,8 +43,6 @@ buttons.addEventListener('click', function(e) {
             }
             
             resetDisplay();
-            display.textContent = target.textContent;
-
             console.log(firstNum);
             console.log(secondNum);
         }
@@ -61,6 +56,7 @@ buttons.addEventListener('click', function(e) {
 
 function performEquation(operand){
     let result;
+
     switch(operand) {
         case "+": 
             result = firstNum + secondNum;
@@ -75,22 +71,31 @@ function performEquation(operand){
             result = firstNum / secondNum;
             break;
     }
+    resetDisplay();
+
     secondNum = "EMPTY";
     firstNum = result;
-    display.textContent = result;
-
+    bottomDisplay.textContent = result;
     console.log(result);
-
 }
 
 function resetDisplay(){
     displayBuffer = [];
-    display.textContent = "";
+    bottomDisplay.textContent = "";
+
+    if(secondNum == "EMPTY" || secondNum == 0) {
+        topDisplay.textContent = firstNum + " " + currentOp;
+    }
+    else {
+        console.log("Val of SecondNum: " + secondNum);
+        topDisplay.textContent = firstNum + " " + currentOp + " " + secondNum; 
+    }
+
 }
 
 function resetProgram(){
     firstNum = "EMPTY";
     secondNum = "EMPTY";
     currentOp = '';
-    resetDisplay();
+    // resetDisplay();
 }
