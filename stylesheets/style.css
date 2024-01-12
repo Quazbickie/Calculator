@@ -24,11 +24,24 @@
 .number, .operand, .reset {
     font-family: 'Ubuntu', sans-serif;
     font-size: 20px;
+    color:darkred;
     border: 3px solid brown;
     border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.number {
+    background-color: blanchedalmond;
+}
+
+.operand {
+    background-color: burlywood ;
+}
+
+.reset {
+    background-color: goldenrod;
 }
 
 .display {
