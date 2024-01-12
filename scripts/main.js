@@ -7,8 +7,7 @@ let displayBuffer = [];
 let firstNum = "EMPTY";
 let secondNum = "EMPTY";
 let currentOp = '';
-
-
+let result;
 
 buttons.addEventListener('click', function(e) {
     let target = e.target;
@@ -22,11 +21,9 @@ buttons.addEventListener('click', function(e) {
 
     else if(target.className == "operand"){
         if(target.textContent == '='){
-            //do maths
             secondNum = int;
             performEquation(currentOp);
         }    
-
         else {
             if(firstNum != "EMPTY" && secondNum != "EMPTY"){
                 performEquation(currentOp);
@@ -41,10 +38,7 @@ buttons.addEventListener('click', function(e) {
                 firstNum = int;
                 currentOp = target.textContent;
             }
-            
             resetDisplay();
-            console.log(firstNum);
-            console.log(secondNum);
         }
 
     }
@@ -55,8 +49,6 @@ buttons.addEventListener('click', function(e) {
 })
 
 function performEquation(operand){
-    let result;
-
     switch(operand) {
         case "+": 
             result = firstNum + secondNum;
@@ -72,16 +64,14 @@ function performEquation(operand){
             break;
     }
     resetDisplay();
-
     secondNum = "EMPTY";
     firstNum = result;
-    bottomDisplay.textContent = result;
-    console.log(result);
 }
 
 function resetDisplay(){
     displayBuffer = [];
     bottomDisplay.textContent = "";
+    bottomDisplay.textContent = result;
 
     if(firstNum == "EMPTY"){
         topDisplay.textContent = '';
@@ -94,12 +84,12 @@ function resetDisplay(){
         console.log("Val of SecondNum: " + secondNum);
         topDisplay.textContent = firstNum + " " + currentOp + " " + secondNum; 
     }
-
 }
 
 function resetProgram(){
     firstNum = "EMPTY";
     secondNum = "EMPTY";
     currentOp = '';
+    result = '';
     resetDisplay();
 }
