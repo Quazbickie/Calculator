@@ -97,5 +97,5 @@ function resetProgram(){
     firstNum = "EMPTY";
     secondNum = "EMPTY";
     currentOp = '';
-    // resetDisplay();
+    resetDisplay();
 }
