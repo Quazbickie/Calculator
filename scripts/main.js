@@ -83,7 +83,11 @@ function resetDisplay(){
     displayBuffer = [];
     bottomDisplay.textContent = "";
 
-    if(secondNum == "EMPTY" || secondNum == 0) {
+    if(firstNum == "EMPTY"){
+        topDisplay.textContent = '';
+        bottomDisplay.textContent = '';
+    }
+    else if(secondNum == "EMPTY" || secondNum == 0) {
         topDisplay.textContent = firstNum + " " + currentOp;
     }
     else {
