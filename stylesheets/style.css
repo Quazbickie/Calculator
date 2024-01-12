@@ -5,6 +5,10 @@
 }
 
 .calculator {
+    margin-top: 60px;
+    border: 4px solid black;
+    border-radius: 12px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -17,10 +21,10 @@
     gap: 20px;
 }
 
-.number, .operand, .display, .reset {
+.number, .operand, .reset {
     font-family: 'Ubuntu', sans-serif;
     font-size: 20px;
-    border: 2px solid black;
+    border: 3px solid brown;
     border-radius: 12px;
     display: flex;
     justify-content: center;
@@ -28,6 +32,8 @@
 }
 
 .display {
+    border: 3px solid grey;
+    border-radius: 12px;
     font-family: 'Ubuntu', sans-serif;
     font-size: 40px;
     display: flex;
@@ -45,6 +51,6 @@
 }
 
 .buttons > .number, .operand, .reset {
-    width: 106px;
+    width: 104px;
     height: 110px;
 }
