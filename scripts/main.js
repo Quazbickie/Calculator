@@ -8,6 +8,7 @@ let firstNum = "EMPTY";
 let secondNum = "EMPTY";
 let currentOp = '';
 let result;
+let decimalFlag = false;
 
 buttons.addEventListener('click', function(e) {
     let target = e.target;
@@ -19,7 +20,17 @@ buttons.addEventListener('click', function(e) {
         bottomDisplay.textContent = displayBuffer.join('');
     }
 
-    else if(target.className == "operand"){
+    if(target.className.includes("decimal")){
+        if(decimalFlag == false){
+            displayBuffer.push(target.textContent);
+            bottomDisplay.textContent = displayBuffer.join('');
+            decimalFlag = true;
+        } else {
+            alert("Already decimaled");
+        }
+    }
+
+    else if(target.className.includes("operand")){
         if(target.textContent == '='){
             secondNum = int;
             performEquation(currentOp);
@@ -36,13 +47,14 @@ buttons.addEventListener('click', function(e) {
             }
             else if(firstNum == "EMPTY"){
                 firstNum = int;
+                decimalFlag = false;
                 currentOp = target.textContent;
             }
             resetDisplay();
         }
 
     }
-    else if(target.className == "reset"){
+    else if(target.className.includes("reset")){
         resetProgram();
     }
 
@@ -66,6 +78,7 @@ function performEquation(operand){
     resetDisplay();
     secondNum = "EMPTY";
     firstNum = result;
+    decimalFlag = false;
 }
 
 function resetDisplay(){
@@ -91,5 +104,6 @@ function resetProgram(){
     secondNum = "EMPTY";
     currentOp = '';
     result = '';
+    decimalFlag = false;
     resetDisplay();
 }
