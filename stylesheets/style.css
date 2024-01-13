@@ -21,7 +21,7 @@
     gap: 20px;
 }
 
-.number, .operand, .reset {
+.number, .operand, .reset, .decimal {
     font-family: 'Ubuntu', sans-serif;
     font-size: 20px;
     color:darkred;
@@ -32,7 +32,7 @@
     align-items: center;
 }
 
-.number {
+.number, .decimal {
     background-color: blanchedalmond;
 }
 
@@ -67,4 +67,9 @@
 .buttons > .number, .operand, .reset {
     width: 104px;
     height: 110px;
+}
+
+.bottom {
+    height: 110px;
+    width: 71px;
 }
