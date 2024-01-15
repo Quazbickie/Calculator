@@ -9,6 +9,7 @@ let secondNum = "EMPTY";
 let currentOp = '';
 let result;
 let decimalFlag = false;
+let brokenFlag = false;
 
 buttons.addEventListener('click', function(e) {
     let target = e.target;
@@ -19,7 +20,6 @@ buttons.addEventListener('click', function(e) {
         console.log(displayBuffer);
         bottomDisplay.textContent = displayBuffer.join('');
     }
-
     if(target.className.includes("decimal")){
         if(decimalFlag == false){
             displayBuffer.push(target.textContent);
@@ -35,14 +35,16 @@ buttons.addEventListener('click', function(e) {
             secondNum = int;
             performEquation(currentOp);
         }    
+
         else {
             if(firstNum != "EMPTY" && secondNum != "EMPTY"){
                 performEquation(currentOp);
                 currentOp = target.textContent;
             }
             else if(firstNum != "EMPTY" && secondNum == "EMPTY"){
-                currentOp = target.textContent;
                 secondNum = int;
+                performEquation(currentOp);
+                currentOp = target.textContent;
 
             }
             else if(firstNum == "EMPTY"){
@@ -50,6 +52,7 @@ buttons.addEventListener('click', function(e) {
                 decimalFlag = false;
                 currentOp = target.textContent;
             }
+            
             resetDisplay();
         }
 
@@ -61,6 +64,7 @@ buttons.addEventListener('click', function(e) {
 })
 
 function performEquation(operand){
+
     switch(operand) {
         case "+": 
             result = firstNum + secondNum;
@@ -72,9 +76,13 @@ function performEquation(operand){
             result = firstNum * secondNum;
             break;
         case "/":
+            if(firstNum == 0 || secondNum == 0){
+                brokenFlag = true;
+            }
             result = firstNum / secondNum;
             break;
     }
+
     resetDisplay();
     secondNum = "EMPTY";
     firstNum = result;
@@ -82,10 +90,13 @@ function performEquation(operand){
 }
 
 function resetDisplay(){
+    if(brokenFlag == true){
+        cantCompute();
+        return;
+    }
     displayBuffer = [];
     bottomDisplay.textContent = "";
     bottomDisplay.textContent = result;
-
     if(firstNum == "EMPTY"){
         topDisplay.textContent = '';
         bottomDisplay.textContent = '';
@@ -99,11 +110,18 @@ function resetDisplay(){
     }
 }
 
+function cantCompute(){
+    topDisplay.textContent = "ABORT ABORT ABORT ABORT ABORT ABORT";
+    bottomDisplay.textContent = "YOU HAVE BROKEN THE CALCULATOR";
+    resetProgram();
+}
+
 function resetProgram(){
     firstNum = "EMPTY";
     secondNum = "EMPTY";
     currentOp = '';
     result = '';
     decimalFlag = false;
+    brokenFlag = false;
     resetDisplay();
 }
