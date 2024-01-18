@@ -113,7 +113,7 @@ function resetDisplay(){
 function cantCompute(){
     topDisplay.textContent = "ABORT ABORT ABORT ABORT ABORT ABORT";
     bottomDisplay.textContent = "YOU HAVE BROKEN THE CALCULATOR";
-    resetProgram();
+    
 }
 
 function resetProgram(){
