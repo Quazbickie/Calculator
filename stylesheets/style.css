@@ -29,6 +29,16 @@
     gap: 20px;
 }
 
+.number, .operand, .decimal, .reset {
+    transition: all 0.2s ease;
+
+}
+
+.number:active, .operand:active, .decimal:active, .reset:active {
+    transform:scale(0.95);
+
+}
+
 .number, .operand, .reset, .decimal {
     font-family: 'Ubuntu', sans-serif;
     font-size: 20px;
